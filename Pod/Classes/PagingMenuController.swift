@@ -205,7 +205,6 @@ public class PagingMenuController: UIViewController, UIScrollViewDelegate {
     }
 
     public func addAttributedMenuTitle(title:String,subTitle:String,index:Int) {
-
         if self.menuView.menuItemViews.count < index{
             return
         }

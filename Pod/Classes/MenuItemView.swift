@@ -69,20 +69,18 @@ public class MenuItemView: UIView {
             backgroundColor = selected ? options.selectedBackgroundColor : options.backgroundColor
         }
 
-        if options.useAttributedTitle {
-            let color = selected ? options.selectedTextColor : options.textColor
-            let titleFont = UIFont.boldSystemFontOfSize(14.0)
-            let subTitleFont = UIFont.boldSystemFontOfSize(12.0)
-
-            let attributedText = NSMutableAttributedString(string: attributedTitle + "\n" + attributedSubTitle)
-            attributedText.addAttributes([NSForegroundColorAttributeName: color,NSFontAttributeName:titleFont], range: NSMakeRange(0, attributedTitle.characters.count))
-            attributedText.addAttributes([NSForegroundColorAttributeName: color,NSFontAttributeName:subTitleFont], range: NSMakeRange(attributedTitle.characters.count,attributedSubTitle.characters.count))
-            self.titleLabel.attributedText = attributedText
-            self.titleLabel.numberOfLines = 2
-        }
-        else {
+        switch options.menuTitleMode {
+        case .Plane:
             titleLabel.textColor = selected ? options.selectedTextColor : options.textColor
             titleLabel.font = selected ? options.selectedFont : options.font
+        case let .AttributedTitle(titleFont,subTitleFont):
+            let color = selected ? options.selectedTextColor : options.textColor
+
+            let attributedText = NSMutableAttributedString(string: attributedTitle + "\n" + attributedSubTitle)
+            attributedText.addAttributes([NSForegroundColorAttributeName: color,NSFontAttributeName:titleFont], range: NSRange(location: 0,length: attributedTitle.characters.count))
+            attributedText.addAttributes([NSForegroundColorAttributeName: color,NSFontAttributeName:subTitleFont], range: NSRange(location: attributedTitle.characters.count,length: attributedSubTitle.characters.count))
+            self.titleLabel.attributedText = attributedText
+            self.titleLabel.numberOfLines = 2
         }
 
         // adjust label width if needed

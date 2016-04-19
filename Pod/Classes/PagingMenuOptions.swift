@@ -26,7 +26,7 @@ public class PagingMenuOptions {
     public var menuSelectedItemCenter = true
     public var menuItemMode = MenuItemMode.Underline(height: 3, color: UIColor.blueColor(), horizontalPadding: 0, verticalPadding: 0)
     public var lazyLoadingPage: LazyLoadingPage = .Three
-    public var useAttributedTitle = false
+    public var menuTitleMode:MenuTitleMode = .Plane
     internal var menuItemCount = 0
     internal let minumumSupportedViewCount = 1
     
@@ -34,7 +34,12 @@ public class PagingMenuOptions {
         case Top
         case Bottom
     }
-    
+
+    public enum MenuTitleMode {
+        case Plane
+        case AttributedTitle(titleFont:UIFont,subTitleFont:UIFont)
+    }
+
     public enum MenuScrollingMode {
         case ScrollEnabled
         case ScrollEnabledAndBouces
