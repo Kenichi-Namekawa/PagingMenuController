@@ -76,7 +76,12 @@ public class MenuItemView: UIView {
         case let .AttributedTitle(titleFont,subTitleFont):
             let color = selected ? options.selectedTextColor : options.textColor
 
-            let attributedText = NSMutableAttributedString(string: attributedTitle + "\n" + attributedSubTitle)
+            var text = attributedTitle
+            if !attributedSubTitle.isEmpty {
+                text += "\n" + attributedSubTitle
+            }
+
+            let attributedText = NSMutableAttributedString(string: text)
             attributedText.addAttributes([NSForegroundColorAttributeName: color,NSFontAttributeName:titleFont], range: NSRange(location: 0,length: attributedTitle.characters.count))
             attributedText.addAttributes([NSForegroundColorAttributeName: color,NSFontAttributeName:subTitleFont], range: NSRange(location: attributedTitle.characters.count + 1,length: attributedSubTitle.characters.count))
             self.titleLabel.attributedText = attributedText
@@ -104,6 +109,8 @@ public class MenuItemView: UIView {
         titleLabel.textColor = options.textColor
         titleLabel.font = options.font
         addSubview(titleLabel)
+
+        attributedTitle = title
     }
     
     private func layoutLabel() {
