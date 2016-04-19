@@ -78,7 +78,7 @@ public class MenuItemView: UIView {
 
             let attributedText = NSMutableAttributedString(string: attributedTitle + "\n" + attributedSubTitle)
             attributedText.addAttributes([NSForegroundColorAttributeName: color,NSFontAttributeName:titleFont], range: NSRange(location: 0,length: attributedTitle.characters.count))
-            attributedText.addAttributes([NSForegroundColorAttributeName: color,NSFontAttributeName:subTitleFont], range: NSRange(location: attributedTitle.characters.count,length: attributedSubTitle.characters.count))
+            attributedText.addAttributes([NSForegroundColorAttributeName: color,NSFontAttributeName:subTitleFont], range: NSRange(location: attributedTitle.characters.count + 1,length: attributedSubTitle.characters.count))
             self.titleLabel.attributedText = attributedText
             self.titleLabel.numberOfLines = 2
         }
