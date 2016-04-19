@@ -78,6 +78,7 @@ public class MenuItemView: UIView {
             attributedText.addAttributes([NSForegroundColorAttributeName: color,NSFontAttributeName:titleFont], range: NSMakeRange(0, attributedTitle.characters.count))
             attributedText.addAttributes([NSForegroundColorAttributeName: color,NSFontAttributeName:subTitleFont], range: NSMakeRange(attributedTitle.characters.count,attributedSubTitle.characters.count))
             self.titleLabel.attributedText = attributedText
+            self.titleLabel.numberOfLines = 2
         }
         else {
             titleLabel.textColor = selected ? options.selectedTextColor : options.textColor

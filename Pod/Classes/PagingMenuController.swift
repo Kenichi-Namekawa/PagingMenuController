@@ -203,7 +203,19 @@ public class PagingMenuController: UIViewController, UIScrollViewDelegate {
                 self!.delegate?.didMoveToPageMenuController?(self!.currentViewController, previousMenuController: previousViewController)
         }
     }
-    
+
+    public func addAttributedMenuTitle(title:String,subTitle:String,index:Int) {
+
+        if self.menuView.menuItemViews.count < index{
+            return
+        }
+
+        let menuItemView = self.menuView.menuItemViews[index]
+        menuItemView.attributedTitle = title
+        menuItemView.attributedSubTitle = subTitle
+        menuItemView.titleLabel.numberOfLines = 2
+    }
+
     // MARK: - UIScrollViewDelegate
     
     public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {

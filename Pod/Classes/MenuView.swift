@@ -119,23 +119,6 @@ public class MenuView: UIScrollView {
             }
         }
     }
-
-    func addMenuTitle(title:String,subTitle:String,index:Int) {
-
-        if self.menuItemViews.count < index{
-            return
-        }
-
-        let attributedTitle = NSMutableAttributedString(string: title + "\n" + subTitle)
-        attributedTitle.addAttributes([NSForegroundColorAttributeName: UIColor.darkGrayColor(),NSFontAttributeName:UIFont.boldSystemFontOfSize(14.0)], range: NSMakeRange(0, title.characters.count))
-        attributedTitle.addAttributes([NSForegroundColorAttributeName: UIColor.darkGrayColor(),NSFontAttributeName:UIFont.boldSystemFontOfSize(12.0)], range: NSMakeRange(title.characters.count,subTitle.characters.count))
-
-        let menuItemView = self.menuItemViews[index]
-        menuItemView.attributedTitle = title
-        menuItemView.attributedSubTitle = subTitle
-        menuItemView.titleLabel.numberOfLines = 2
-        menuItemView.titleLabel.attributedText = attributedTitle
-    }
     
     // MARK: - Private method
     
