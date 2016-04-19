@@ -26,6 +26,7 @@ public class PagingMenuOptions {
     public var menuSelectedItemCenter = true
     public var menuItemMode = MenuItemMode.Underline(height: 3, color: UIColor.blueColor(), horizontalPadding: 0, verticalPadding: 0)
     public var lazyLoadingPage: LazyLoadingPage = .Three
+    public var useAttributedTitle = false
     internal var menuItemCount = 0
     internal let minumumSupportedViewCount = 1
     

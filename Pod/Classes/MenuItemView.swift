@@ -20,7 +20,10 @@ public class MenuItemView: UIView {
     }()
     private var options: PagingMenuOptions!
     private var widthLabelConstraint: NSLayoutConstraint!
-    
+
+    var attributedTitle = ""
+    var attributedSubTitle = ""
+
     // MARK: - Lifecycle
     
     internal init(title: String, options: PagingMenuOptions) {
@@ -65,8 +68,21 @@ public class MenuItemView: UIView {
         } else {
             backgroundColor = selected ? options.selectedBackgroundColor : options.backgroundColor
         }
-        titleLabel.textColor = selected ? options.selectedTextColor : options.textColor
-        titleLabel.font = selected ? options.selectedFont : options.font
+
+        if options.useAttributedTitle {
+            let color = selected ? options.selectedTextColor : options.textColor
+            let titleFont = UIFont.boldSystemFontOfSize(14.0)
+            let subTitleFont = UIFont.boldSystemFontOfSize(12.0)
+
+            let attributedText = NSMutableAttributedString(string: attributedTitle + "\n" + attributedSubTitle)
+            attributedText.addAttributes([NSForegroundColorAttributeName: color,NSFontAttributeName:titleFont], range: NSMakeRange(0, attributedTitle.characters.count))
+            attributedText.addAttributes([NSForegroundColorAttributeName: color,NSFontAttributeName:subTitleFont], range: NSMakeRange(attributedTitle.characters.count,attributedSubTitle.characters.count))
+            self.titleLabel.attributedText = attributedText
+        }
+        else {
+            titleLabel.textColor = selected ? options.selectedTextColor : options.textColor
+            titleLabel.font = selected ? options.selectedFont : options.font
+        }
 
         // adjust label width if needed
         let labelSize = calculateLableSize()
